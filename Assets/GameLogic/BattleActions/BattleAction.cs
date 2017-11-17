@@ -14,20 +14,20 @@ public abstract class BattleAction
 	public TTargetType TargetType;
 	public abstract Color Color { get; }
 
-	private Monster FindTarget(Monster self, int targetPosition)
+	private BattleSlot_Monster FindTarget(BattleSlot_Monster source, int targetPosition)
 	{
 		switch (TargetType)
 		{
-			case TTargetType.Enemy: return self.ParentTeam.EnemyTeam.Monsters[targetPosition];
-			case TTargetType.Friendly: return self.ParentTeam.Monsters[targetPosition];
+			case TTargetType.Enemy: return source.ParentTeam.EnemyTeamSlot.MonsterSlots[targetPosition];
+			case TTargetType.Friendly: return source.ParentTeam.MonsterSlots[targetPosition];
 			default: throw UnsupportedEnumMemberException.GetGeneric(TargetType);
 		}
 	}
 
-	public BattleActionInvocation Invoke(Monster self, int targetPosition)
+	public BattleActionInvocation Invoke(BattleSlot_Monster source, int targetPosition)
 	{
-		return Invoke(self, FindTarget(self, targetPosition));
+		return Invoke(source, FindTarget(source, targetPosition));
 	}
 
-	protected abstract BattleActionInvocation Invoke(Monster self, Monster target);
+	protected abstract BattleActionInvocation Invoke(BattleSlot_Monster source, BattleSlot_Monster target);
 }

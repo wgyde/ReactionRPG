@@ -13,7 +13,8 @@ public class FieldUI_Monster : MonoBehaviour
 	public Rect Frame { get; private set; }
 
 	public FieldUI FieldUI => ParentBattleTeamUI.ParentFieldUI;
-	public Monster Monster => ParentBattleTeamUI.BattleTeam.Monsters[Index];
+	public BattleSlot_Monster MonsterSlot => ParentBattleTeamUI.BattleTeam.MonsterSlots[Index];
+	public Monster Monster => MonsterSlot.Monster;
 
 	private SpriteRenderer MonsterRenderer;
 	private SpriteRenderer MonsterStatusRenderer;
@@ -42,26 +43,26 @@ public class FieldUI_Monster : MonoBehaviour
 
 	private void ResyncActionInvocationUI()
 	{
-		if (Invoking && !Monster.Invoking)
+		if (Invoking && !MonsterSlot.Invoking)
 		{
 			FieldUI.SpritePool.Give(ProjectileØ);
 			ProjectileØ = null;
 		}
-		else if (!Invoking && Monster.Invoking)
+		else if (!Invoking && MonsterSlot.Invoking)
 		{
 			ProjectileØ = FieldUI.SpritePool.Take();
 			ProjectileØ.sprite = SpriteCatalog.ID.BoxProjectile_Fill.GetAsset();
-			ProjectileØ.color = Monster.CurrentInvocationØ.Action.Color;
+			ProjectileØ.color = MonsterSlot.CurrentInvocationØ.Action.Color;
 		}
 
 		if (Invoking)
 		{
-			Vector3 startLocation = FieldUI.GetUI(Monster.CurrentInvocationØ.Self).Frame.center;
-			Vector3 endLocation = FieldUI.GetUI(Monster.CurrentInvocationØ.Target).Frame.center;
+			Vector3 startLocation = FieldUI.GetUI(MonsterSlot.CurrentInvocationØ.Source).Frame.center;
+			Vector3 endLocation = FieldUI.GetUI(MonsterSlot.CurrentInvocationØ.Target).Frame.center;
 			ProjectileØ.transform.position = Vector3.Lerp(
 				startLocation,
 				endLocation,
-				Monster.CurrentInvocationØ.Progress / Monster.CurrentInvocationØ.Action.Duration
+				MonsterSlot.CurrentInvocationØ.Progress / MonsterSlot.CurrentInvocationØ.Action.Duration
 			);
 		}
 	}

@@ -11,3 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/UnityUI/BattleScene/BattleScene.unity
     guid: 9a7cc7fe8b67428449fd00d17bdca69a
+  - enabled: 1
+    path: Assets/UnityUI/OverworldScene/OverworldScene.unity
+    guid: f3454213fbb515c42806c908d03f9d8e
+  - enabled: 1
+    path: Assets/UnityUI/BattleMenuScene/BattleSelectScene.unity
+    guid: 4c23aa72111265c4c8a86f4087449d01

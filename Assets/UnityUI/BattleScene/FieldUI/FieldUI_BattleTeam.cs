@@ -6,7 +6,7 @@ public class FieldUI_BattleTeam : MonoBehaviour
 	public FieldUI ParentFieldUI { get; private set; }
 	public int Index { get; private set; }
 	
-	public BattleTeam BattleTeam => ParentFieldUI.ParentBattleScene.Battle.Teams[Index];
+	public BattleSlot_MonsterTeam BattleTeam => ParentFieldUI.ParentBattleScene.Battle.TeamSlots[Index];
 
 	public FieldUI_Monster[] MonsterUIs;
 

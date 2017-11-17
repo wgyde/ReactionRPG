@@ -7,7 +7,7 @@ where TAction : BattleAction
 {
 	public new TAction Action;
 
-	public BattleActionInvocation_Generic(TAction action, Monster self, Monster target) : base(action, self, target)
+	public BattleActionInvocation_Generic(TAction action, BattleSlot_Monster source, BattleSlot_Monster target) : base(action, source, target)
 	{
 		Action = action;
 	}

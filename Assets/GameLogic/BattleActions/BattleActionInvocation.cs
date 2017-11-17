@@ -4,17 +4,17 @@ using UnityEngine;
 public abstract class BattleActionInvocation
 {
 	public readonly BattleAction Action;
-	public readonly Monster Self;
-	public readonly Monster Target;
+	public readonly BattleSlot_Monster Source;
+	public readonly BattleSlot_Monster Target;
 
 	public float Progress { get; private set; }
 	public float NormalizedProgress => Progress / Action.Duration;
 	public bool IsFinished => Progress >= Action.Duration;
 
-	public BattleActionInvocation(BattleAction action, Monster self, Monster target)
+	public BattleActionInvocation(BattleAction action, BattleSlot_Monster source, BattleSlot_Monster target)
 	{
 		Action = action;
-		Self = self;
+		Source = source;
 		Target = target;
 		Progress = 0.0f;
 	}

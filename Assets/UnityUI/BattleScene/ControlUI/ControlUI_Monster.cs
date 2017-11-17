@@ -11,7 +11,7 @@ public class ControlUI_Monster : MonoBehaviour
 	public ControlUI ParentControlUI { get; private set; }
 	public int Index { get; private set; }
 
-	public Monster Monster => ParentControlUI.BattleTeam.Monsters[Index];
+	public BattleSlot_Monster MonsterSlot => ParentControlUI.BattleTeam.MonsterSlots[Index];
 
 	public void Initialize(ControlUI parentControlUI, int index)
 	{

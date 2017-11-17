@@ -8,17 +8,11 @@ public class BattleScene : MonoBehaviour
 	[SerializeField] FieldUI FieldUI;
 #pragma warning restore 649
 
-	public const int FRIENDLY_TEAM = 0;
-	public const int ENEMY_TEAM = 1;
-
 	public Battle Battle { get; private set; }
 
-	private void Initialize()
+	public void Initialize(MonsterTeam enemies)
 	{
-		Battle = new Battle();
-
-		Battle.Teams[FRIENDLY_TEAM].Monsters[2].Actions[0] = new BattleAction_Status(MonsterStatus.Inst_Frail) { TargetType = BattleAction.TTargetType.Enemy };
-		Battle.Teams[FRIENDLY_TEAM].Monsters[2].Actions[1] = new BattleAction_Status(MonsterStatus.Inst_Inspired) { TargetType = BattleAction.TTargetType.Friendly };
+		Battle = new Battle(Player.Inst.Team, enemies);
 
 		ControlUI.Initialize(this);
 		FieldUI.Initialize(this);
@@ -31,14 +25,18 @@ public class BattleScene : MonoBehaviour
 		FieldUI.ResyncUI();
 	}
 
-	protected virtual void Awake()
-	{
-		Initialize();
-	}
-
 	protected virtual void Update()
 	{
-		Battle.Step(Time.deltaTime);
+		if (Battle.WinnerØ == null)
+		{
+			Battle.Step(Time.deltaTime);
+		}
+		else
+		{
+			SceneCatalog.BattleSelectScene.Load((bss) => {
+				bss.OnBattleFinish(Battle.WinnerØ == Battle.Allies);
+			});
+		}
 		ResyncUI();
 	}
 }

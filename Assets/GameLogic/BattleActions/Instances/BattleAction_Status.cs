@@ -5,13 +5,13 @@ public class BattleAction_Status : BattleAction
 {
 	private class Invocation : BattleActionInvocation_Generic<BattleAction_Status>
 	{
-		public Invocation(BattleAction_Status action, Monster self, Monster target) : base(action, self, target)
+		public Invocation(BattleAction_Status action, BattleSlot_Monster source, BattleSlot_Monster target) : base(action, source, target)
 		{
 		}
 
 		public override void PerformAction()
 		{
-			Target.CurrentStatus = Action.Status;
+			Target.Monster.CurrentStatus = Action.Status;
 		}
 	}
 
@@ -24,8 +24,8 @@ public class BattleAction_Status : BattleAction
 		Status = status;
 	}
 
-	protected override BattleActionInvocation Invoke(Monster self, Monster target)
+	protected override BattleActionInvocation Invoke(BattleSlot_Monster source, BattleSlot_Monster target)
 	{
-		return new Invocation(this, self, target);
+		return new Invocation(this, source, target);
 	}
 }

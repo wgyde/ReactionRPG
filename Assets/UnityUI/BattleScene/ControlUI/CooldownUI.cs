@@ -11,7 +11,7 @@ public class CooldownUI : MonoBehaviour
 
 	public ControlUI_Monster ParentMonsterUI { get; private set; }
 
-	public Monster Monster => ParentMonsterUI.Monster;
+	public BattleSlot_Monster MonsterSlot => ParentMonsterUI.MonsterSlot;
 
 	public void Initialize(ControlUI_Monster parentMonsterUI)
 	{
@@ -20,10 +20,10 @@ public class CooldownUI : MonoBehaviour
 
 	public void ResyncUI()
 	{
-		if (Monster.Invoking)
+		if (MonsterSlot.Invoking)
 		{
 			Fader.gameObject.SetActive(true);
-			Wipe.fillAmount = 1.0f - Monster.CurrentInvocationØ.NormalizedProgress;
+			Wipe.fillAmount = 1.0f - MonsterSlot.CurrentInvocationØ.NormalizedProgress;
 		}
 		else
 		{

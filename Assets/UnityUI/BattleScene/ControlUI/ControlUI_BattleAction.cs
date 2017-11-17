@@ -12,7 +12,7 @@ public class ControlUI_BattleAction : MonoBehaviour
 	public ControlUI_Monster ParentMonsterUI { get; private set; }
 	public int Index { get; private set; }
 
-	public BattleAction Action => ParentMonsterUI.Monster.Actions[Index];
+	public BattleAction Action => ParentMonsterUI.MonsterSlot.Monster.Actions[Index];
 	
 	public void Initialize(ControlUI_Monster parentMonsterUI, int index)
 	{
@@ -26,7 +26,7 @@ public class ControlUI_BattleAction : MonoBehaviour
 	{
 		if (Input.GetKey(Key))
 		{
-			ParentMonsterUI.Monster.InvokeAction(Action, ParentMonsterUI.ParentControlUI.FindTargetPosition());
+			ParentMonsterUI.MonsterSlot.InvokeAction(Action, ParentMonsterUI.ParentControlUI.FindTargetPosition());
 		}
 	}
 }

@@ -18,8 +18,19 @@ public class OverworldScene : MonoBehaviour
 		POIUIPanel.Initialize(this);
 	}
 
+	private void _Update()
+	{
+		Avatar._Update();
+		POIUIPanel._Update();
+	}
+
 	protected virtual void Awake()
 	{
 		Initialize();
+	}
+
+	protected virtual void Update()
+	{
+		_Update();
 	}
 }

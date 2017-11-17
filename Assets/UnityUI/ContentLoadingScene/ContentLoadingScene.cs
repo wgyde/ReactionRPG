@@ -13,6 +13,6 @@ public class ContentLoadingScene : MonoBehaviour
 	{
 		InstØ = this;
 		CatalogManager.LoadAll();
-		SceneCatalog.BattleScene.Load();
+		SceneCatalog.BattleSelectScene.Load();
 	}
 }
