@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public static class RectTransformExtensions
+public static class UnityExtensions_RectTransform
 {
 	public static float GetSize(this RectTransform transform, RectTransform.Axis axis)
 	{

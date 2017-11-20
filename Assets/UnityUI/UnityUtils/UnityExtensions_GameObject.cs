@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public static class GameObjectExtensions
+public static class UnityExtensions_GameObject
 {
 	public static T InstantiateChild<T>(this GameObject parent, T prefab)
 	where T : Component

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public static class TransformExtensions
+public static class UnityExtensions_Transform
 {
 	public static void SetLossyScale(this Transform transform, Vector3 scale)
 	{
