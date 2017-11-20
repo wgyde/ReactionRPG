@@ -12,7 +12,7 @@ where T : Component
 
 	private Queue<T> Pool;
 
-	public void Initialize()
+	public virtual void Initialize()
 	{
 		Pool = new Queue<T>();
 		Create(InitialSize);

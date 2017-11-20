@@ -4,10 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NSUtils
+public class RNGUtils
 {
-	public class RNGUtils
-	{
-		public static Random RNG = new Random();
-	}
+	public static Random RNG = new Random();
 }

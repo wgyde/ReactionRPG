@@ -30,12 +30,12 @@ public class FieldUI_Monster : MonoBehaviour
 		Frame = GetComponent<RectTransform>().GetWorldRect();
 
 		#region place monster sprite
-		MonsterRenderer = FieldUI.SpritePool.Take();
+		MonsterRenderer = PrefabPool_Sprite.Inst.Take();
 		MonsterRenderer.sprite = SpriteCatalog.ID.BoxMonster_Fill.GetAsset();
 		MonsterRenderer.transform.position = new Vector3(Frame.center.x, Frame.center.y, 0.0f);
 		MonsterRenderer.color = new Color(0.4f, 0.6f, 0.6f, 1.0f);
 
-		MonsterStatusRenderer = FieldUI.SpritePool.Take();
+		MonsterStatusRenderer = PrefabPool_Sprite.Inst.Take();
 		MonsterStatusRenderer.sprite = SpriteCatalog.ID.BoxMonster_Outline.GetAsset();
 		MonsterStatusRenderer.transform.position = new Vector3(Frame.center.x, Frame.center.y, 0.0f);
 		#endregion
@@ -45,12 +45,12 @@ public class FieldUI_Monster : MonoBehaviour
 	{
 		if (Invoking && !MonsterSlot.Invoking)
 		{
-			FieldUI.SpritePool.Give(ProjectileØ);
+			PrefabPool_Sprite.Inst.Give(ProjectileØ);
 			ProjectileØ = null;
 		}
 		else if (!Invoking && MonsterSlot.Invoking)
 		{
-			ProjectileØ = FieldUI.SpritePool.Take();
+			ProjectileØ = PrefabPool_Sprite.Inst.Take();
 			ProjectileØ.sprite = SpriteCatalog.ID.BoxProjectile_Fill.GetAsset();
 			ProjectileØ.color = MonsterSlot.CurrentInvocationØ.Action.Color;
 		}

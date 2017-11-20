@@ -10,8 +10,8 @@ public class BattleSelectScene : MonoBehaviour
 	[SerializeField] Text Text;
 #pragma warning restore 649
 
-	private int BattleCount = 0;
-	private int WinCount = 0;
+	private int BattleCount { get { return PersistentData.Inst.BattleCount; } set { PersistentData.Inst.BattleCount = value; } } 
+	private int WinCount { get { return PersistentData.Inst.WinCount; } set {PersistentData.Inst.WinCount = value; } }
 
 	private class BattleListElement
 	{
@@ -65,8 +65,9 @@ public class BattleSelectScene : MonoBehaviour
 			if (Input.GetKeyDown(i.ToString()))
 			{
 				int closure_i = i;
-				SceneCatalog.BattleScene.Load((bs) => {
-					bs.Initialize(BattleListElements[closure_i].CreateEnemyTeam());
+				SceneTransitioner.Inst.Transition(SceneCatalog.BattleScene, () => {
+					var controller = SceneCatalog.BattleScene.Controller;
+					controller.Initialize(BattleListElements[closure_i].CreateEnemyTeam());
 				});
 			}
 		}

@@ -18,7 +18,7 @@ public class SpriteCatalog
 
 		protected override void Load()
 		{
-			var sprites = ContentLoadingScene.InstØ.Sprites;
+			var sprites = ContentLoadingScene.Inst.Sprites;
 
 			ID key;
 			foreach (var sprite in sprites.Values)

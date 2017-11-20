@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/UnityUI/SceneTransitioner/SceneTransitioner.unity
+    guid: 5db6abf0d84855d4f8bc21d27f6400f7
+  - enabled: 1
     path: Assets/UnityUI/ContentLoadingScene/ContentLoadingScene.unity
     guid: 1b3806464094b9946bf1f20a5a0ff131
   - enabled: 1
@@ -15,5 +18,5 @@ EditorBuildSettings:
     path: Assets/UnityUI/OverworldScene/OverworldScene.unity
     guid: f3454213fbb515c42806c908d03f9d8e
   - enabled: 1
-    path: Assets/UnityUI/BattleMenuScene/BattleSelectScene.unity
+    path: Assets/UnityUI/BattleSelectScene/BattleSelectScene.unity
     guid: 4c23aa72111265c4c8a86f4087449d01

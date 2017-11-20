@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public static class SceneCatalog
 {
-	public static readonly SceneData<BattleScene> BattleScene = new SceneData<BattleScene>("BattleScene");
-	public static readonly SceneData<BattleSelectScene> BattleSelectScene = new SceneData<BattleSelectScene>("BattleSelectScene");
-	public static readonly SceneData<ContentLoadingScene> ContentLoadingScene = new SceneData<ContentLoadingScene>("ContentLoadingScene");
-	public static readonly SceneData<OverworldScene> OverworldScene = new SceneData<OverworldScene>("OverworldScene");
+	public static readonly GenericSceneData<BattleScene> BattleScene = new GenericSceneData<BattleScene>("BattleScene");
+	public static readonly GenericSceneData<BattleSelectScene> BattleSelectScene = new GenericSceneData<BattleSelectScene>("BattleSelectScene");
+	public static readonly GenericSceneData<OverworldScene> OverworldScene = new GenericSceneData<OverworldScene>("OverworldScene");
+	public static readonly GenericSceneData<ContentLoadingScene> ContentLoadingScene = new GenericSceneData<ContentLoadingScene>("ContentLoadingScene");
 }

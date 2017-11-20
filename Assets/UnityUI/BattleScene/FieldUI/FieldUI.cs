@@ -5,8 +5,6 @@ using UnityEngine;
 public class FieldUI : MonoBehaviour
 {
 #pragma warning disable 649
-	[SerializeField] public PrefabPool_Sprite SpritePool;
-	[SerializeField] RectTransform FrameTransform;
 	[SerializeField] FieldUI_BattleTeam[] BattleTeamUIs;
 #pragma warning restore 649
 
@@ -20,8 +18,6 @@ public class FieldUI : MonoBehaviour
 	public void Initialize(BattleScene parentBattleScene)
 	{
 		ParentBattleScene = parentBattleScene;
-
-		SpritePool.Initialize();
 		
 		for (int i=0; i<BattleTeamUIs.Length; ++i)
 			BattleTeamUIs[i].Initialize(this, i);
