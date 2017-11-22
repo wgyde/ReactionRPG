@@ -6,17 +6,21 @@ public class Battle
 {
 	private const int INDEX_ALLIES = 0;
 	private const int INDEX_ENEMIES = 1;
-	public readonly BattleSlot_MonsterTeam[] TeamSlots;
-	public BattleSlot_MonsterTeam Allies => TeamSlots[INDEX_ALLIES];
-	public BattleSlot_MonsterTeam Enemies => TeamSlots[INDEX_ENEMIES];
+	public readonly BattlingMonsterTeam[] BattlingTeamSlots;
+	public readonly HeadlessBattleActionInvoker ActionInvoker;
 
-	public BattleSlot_MonsterTeam WinnerØ { get; private set; }
+	public BattlingMonsterTeam Allies => BattlingTeamSlots[INDEX_ALLIES];
+	public BattlingMonsterTeam Enemies => BattlingTeamSlots[INDEX_ENEMIES];
+
+	public BattlingMonsterTeam WinnerØ { get; private set; }
 
 	public Battle(MonsterTeam allies, MonsterTeam enemies)
 	{
-		TeamSlots = new BattleSlot_MonsterTeam[2];
-		TeamSlots[INDEX_ALLIES] = new BattleSlot_MonsterTeam(this, INDEX_ALLIES, allies);
-		TeamSlots[INDEX_ENEMIES] = new BattleSlot_MonsterTeam(this, INDEX_ENEMIES, enemies);
+		BattlingTeamSlots = new BattlingMonsterTeam[2];
+		BattlingTeamSlots[INDEX_ALLIES] = new BattlingMonsterTeam(this, INDEX_ALLIES, allies);
+		BattlingTeamSlots[INDEX_ENEMIES] = new BattlingMonsterTeam(this, INDEX_ENEMIES, enemies);
+
+		ActionInvoker = new HeadlessBattleActionInvoker();
 	}
 	
 	private void TryFindWinner()
@@ -34,7 +38,9 @@ public class Battle
 			return;
 		}
 
-		TeamSlots[0].Step(dt);
-		TeamSlots[1].Step(dt);
+		ActionInvoker.Step(dt);
+
+		BattlingTeamSlots[0].Step(dt);
+		BattlingTeamSlots[1].Step(dt);
 	}
 }

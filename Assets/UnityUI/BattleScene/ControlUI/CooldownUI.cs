@@ -9,21 +9,21 @@ public class CooldownUI : MonoBehaviour
 	[SerializeField] Image Wipe;
 #pragma warning restore 649
 
-	public ControlUI_Monster ParentMonsterUI { get; private set; }
+	public ControlUI_BattleAction ParentActionUI { get; private set; }
 
-	public BattleSlot_Monster MonsterSlot => ParentMonsterUI.MonsterSlot;
+	private BattlingMonsterTeam BattlingTeam => ParentActionUI.ParentMonsterUI.ParentControlUI.BattlingTeam;
 
-	public void Initialize(ControlUI_Monster parentMonsterUI)
+	public void Initialize(ControlUI_BattleAction parentActionUI)
 	{
-		ParentMonsterUI = parentMonsterUI;
+		ParentActionUI = parentActionUI;
 	}
 
 	public void ResyncUI()
 	{
-		if (MonsterSlot.Invoking)
+		if (BattlingTeam.ActionCooldownActivated)
 		{
 			Fader.gameObject.SetActive(true);
-			Wipe.fillAmount = 1.0f - MonsterSlot.CurrentInvocationØ.NormalizedProgress;
+			Wipe.fillAmount = BattlingTeam.ActionCooldownCur / BattlingTeam.ActionCooldownMax;
 		}
 		else
 		{

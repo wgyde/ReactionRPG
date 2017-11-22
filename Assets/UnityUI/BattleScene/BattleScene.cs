@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleScene : MonoBehaviour
 {
 #pragma warning disable 649
 	[SerializeField] public PrefabPool_Sprite SpritePool;
-	[SerializeField] ControlUI ControlUI;
-	[SerializeField] FieldUI FieldUI;
+	[SerializeField] public ControlUI ControlUI;
+	[SerializeField] public FieldUI FieldUI;
 #pragma warning restore 649
+
+	[NonSerialized] public UI_HeadlessActionInvoker ActionInvokerUI;
 
 	public Battle Battle { get; private set; }
 	public bool WonBattle => Battle.WinnerØ == Battle.Allies;
@@ -20,6 +23,7 @@ public class BattleScene : MonoBehaviour
 		SpritePool.Initialize();
 		ControlUI.Initialize(this);
 		FieldUI.Initialize(this);
+		ActionInvokerUI = new UI_HeadlessActionInvoker(this);
 
 		RunningBattle = true;
 	}
@@ -47,6 +51,7 @@ public class BattleScene : MonoBehaviour
 	{
 		ControlUI.ResyncUI();
 		FieldUI.ResyncUI();
+		ActionInvokerUI.ResyncUI();
 	}
 
 	protected virtual void Update()

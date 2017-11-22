@@ -13,14 +13,10 @@ public class FieldUI_Monster : MonoBehaviour
 	public Rect Frame { get; private set; }
 
 	public FieldUI FieldUI => ParentBattleTeamUI.ParentFieldUI;
-	public BattleSlot_Monster MonsterSlot => ParentBattleTeamUI.BattleTeam.MonsterSlots[Index];
-	public Monster Monster => MonsterSlot.Monster;
+	public BattlingMonster BattlingMonster => ParentBattleTeamUI.BattlingMonsterTeam.BattlingMonsters[Index];
 
 	private SpriteRenderer MonsterRenderer;
 	private SpriteRenderer MonsterStatusRenderer;
-
-	private SpriteRenderer ProjectileØ;
-	private bool Invoking => ProjectileØ != null;
 
 	public void Initialize(FieldUI_BattleTeam parentBattleTeamUI, int index)
 	{
@@ -41,36 +37,9 @@ public class FieldUI_Monster : MonoBehaviour
 		#endregion
 	}
 
-	private void ResyncActionInvocationUI()
-	{
-		if (Invoking && !MonsterSlot.Invoking)
-		{
-			PrefabPool_Sprite.Inst.Give(ProjectileØ);
-			ProjectileØ = null;
-		}
-		else if (!Invoking && MonsterSlot.Invoking)
-		{
-			ProjectileØ = PrefabPool_Sprite.Inst.Take();
-			ProjectileØ.sprite = SpriteCatalog.ID.BoxProjectile_Fill.GetAsset();
-			ProjectileØ.color = MonsterSlot.CurrentInvocationØ.Action.Color;
-		}
-
-		if (Invoking)
-		{
-			Vector3 startLocation = FieldUI.GetUI(MonsterSlot.CurrentInvocationØ.Source).Frame.center;
-			Vector3 endLocation = FieldUI.GetUI(MonsterSlot.CurrentInvocationØ.Target).Frame.center;
-			ProjectileØ.transform.position = Vector3.Lerp(
-				startLocation,
-				endLocation,
-				MonsterSlot.CurrentInvocationØ.Progress / MonsterSlot.CurrentInvocationØ.Action.Duration
-			);
-		}
-	}
-
 	public void ResyncUI()
 	{
-		ResyncActionInvocationUI();
-		HPBar.Show(Monster.HPCur, Monster.HPMax);
-		MonsterStatusRenderer.color = Monster.CurrentStatus.Color;
+		HPBar.Show(BattlingMonster.SPCur, BattlingMonster.SPMax);
+		MonsterStatusRenderer.color = BattlingMonster.CurrentStatus.Color;
 	}
 }

@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class FieldUI_BattleTeam : MonoBehaviour
 {
+#pragma warning disable 649
+	[SerializeField] FillBar SPBar;
+#pragma warning disable 649
+
 	public FieldUI ParentFieldUI { get; private set; }
 	public int Index { get; private set; }
 	
-	public BattleSlot_MonsterTeam BattleTeam => ParentFieldUI.ParentBattleScene.Battle.TeamSlots[Index];
+	public BattlingMonsterTeam BattlingMonsterTeam => ParentFieldUI.ParentBattleScene.Battle.BattlingTeamSlots[Index];
 
 	public FieldUI_Monster[] MonsterUIs;
 
@@ -21,6 +25,7 @@ public class FieldUI_BattleTeam : MonoBehaviour
 
 	public void ResyncUI()
 	{
+		SPBar.Show(BattlingMonsterTeam.SPCur, BattlingMonsterTeam.SPMax);
 		for (int i=0; i<MonsterUIs.Length; ++i)
 			MonsterUIs[i].ResyncUI();
 	}

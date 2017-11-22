@@ -10,7 +10,7 @@ public class ControlUI : MonoBehaviour
 	public BattleScene ParentBattleScene { get; private set; }
 	public int Index { get; private set; }
 
-	public BattleSlot_MonsterTeam BattleTeam => ParentBattleScene.Battle.Allies;
+	public BattlingMonsterTeam BattlingTeam => ParentBattleScene.Battle.Allies;
 
 	public int FindTargetPosition()
 	{

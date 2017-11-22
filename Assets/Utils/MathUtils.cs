@@ -53,6 +53,7 @@ public static class MathUtils
 
 	public static int Min(int i1, int i2) { return i1 < i2 ? i1 : i2; }
 	public static float Min(float f1, float f2) { return f1 < f2 ? f1 : f2; }
+	public static float Min(params float[] fv) { return fv.Min(); }
 	public static double Min(double d1, double d2) { return d1 < d2 ? d1 : d2; }
 	public static int Max(int i1, int i2) { return i1 > i2 ? i1 : i2; }
 	public static float Max(float f1, float f2) { return f1 > f2 ? f1 : f2; }

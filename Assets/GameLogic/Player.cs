@@ -10,7 +10,5 @@ public class Player
 	private Player()
 	{
 		Team = new MonsterTeam();
-		Team.Monsters[2].Actions[0] = new BattleAction_Status(MonsterStatus.Inst_Frail) { TargetType = BattleAction.TTargetType.Enemy };
-		Team.Monsters[2].Actions[1] = new BattleAction_Status(MonsterStatus.Inst_Inspired) { TargetType = BattleAction.TTargetType.Friendly };
 	}
 }

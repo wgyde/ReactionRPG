@@ -4,14 +4,14 @@ using UnityEngine;
 public abstract class BattleActionInvocation
 {
 	public readonly BattleAction Action;
-	public readonly BattleSlot_Monster Source;
-	public readonly BattleSlot_Monster Target;
+	public readonly BattlingMonster Source;
+	public readonly BattlingMonster Target;
 
 	public float Progress { get; private set; }
 	public float NormalizedProgress => Progress / Action.Duration;
 	public bool IsFinished => Progress >= Action.Duration;
 
-	public BattleActionInvocation(BattleAction action, BattleSlot_Monster source, BattleSlot_Monster target)
+	public BattleActionInvocation(BattleAction action, BattlingMonster source, BattlingMonster target)
 	{
 		Action = action;
 		Source = source;

@@ -7,6 +7,7 @@ public class ControlUI_BattleAction : MonoBehaviour
 #pragma warning disable 649
 	[SerializeField] Image Image;
 	[SerializeField] KeyCode Key;
+	[SerializeField] CooldownUI CooldownUI;
 #pragma warning restore 649
 
 	public ControlUI_Monster ParentMonsterUI { get; private set; }
@@ -20,6 +21,8 @@ public class ControlUI_BattleAction : MonoBehaviour
 		Index = index;
 
 		Image.color = Action.Color;
+
+		CooldownUI.Initialize(this);
 	}
 
 	public void ResyncUI()
@@ -28,5 +31,6 @@ public class ControlUI_BattleAction : MonoBehaviour
 		{
 			ParentMonsterUI.MonsterSlot.InvokeAction(Action, ParentMonsterUI.ParentControlUI.FindTargetPosition());
 		}
+		CooldownUI.ResyncUI();
 	}
 }

@@ -7,25 +7,21 @@ public class BattleAction_Damage : BattleAction
 	{
 		private int Damage;
 		
-		public Invocation(BattleAction_Damage action, BattleSlot_Monster source, BattleSlot_Monster target) : base(action, source, target)
+		public Invocation(BattleAction_Damage action, BattlingMonster source, BattlingMonster target) : base(action, source, target)
 		{
 			Damage = action.Damage;
-			if (source.Monster.CurrentStatus == MonsterStatus.Inst_Inspired)
-				Damage += 1;
 		}
 
 		public override void PerformAction()
 		{
-			if (Target.Monster.CurrentStatus == MonsterStatus.Inst_Frail)
-				Damage += 1;
-			Target.Monster.HPCur -= Damage;
+			Target.SPCur -= Damage;
 		}
 	}
 
 	public override Color Color => Color.red;
 	private readonly int Damage = 1;
 
-	protected override BattleActionInvocation Invoke(BattleSlot_Monster source, BattleSlot_Monster target)
+	protected override BattleActionInvocation Invoke(BattlingMonster source, BattlingMonster target)
 	{
 		return new Invocation(this, source, target);
 	}

@@ -10,24 +10,24 @@ public abstract class BattleAction
 		Friendly
 	}
 	
-	public readonly float Duration = 2.0f;
+	public readonly float Duration = 0.5f;
 	public TTargetType TargetType;
 	public abstract Color Color { get; }
 
-	private BattleSlot_Monster FindTarget(BattleSlot_Monster source, int targetPosition)
+	private BattlingMonster FindTarget(BattlingMonster source, int targetPosition)
 	{
 		switch (TargetType)
 		{
-			case TTargetType.Enemy: return source.ParentTeam.EnemyTeamSlot.MonsterSlots[targetPosition];
-			case TTargetType.Friendly: return source.ParentTeam.MonsterSlots[targetPosition];
+			case TTargetType.Enemy: return source.ParentBattlingTeam.EnemyTeamSlot.BattlingMonsters[targetPosition];
+			case TTargetType.Friendly: return source.ParentBattlingTeam.BattlingMonsters[targetPosition];
 			default: throw UnsupportedEnumMemberException.GetGeneric(TargetType);
 		}
 	}
 
-	public BattleActionInvocation Invoke(BattleSlot_Monster source, int targetPosition)
+	public BattleActionInvocation Invoke(BattlingMonster source, int targetPosition)
 	{
 		return Invoke(source, FindTarget(source, targetPosition));
 	}
 
-	protected abstract BattleActionInvocation Invoke(BattleSlot_Monster source, BattleSlot_Monster target);
+	protected abstract BattleActionInvocation Invoke(BattlingMonster source, BattlingMonster target);
 }

@@ -44,7 +44,10 @@ public class SceneTransitioner : MonoBehaviour
 			FadeAlpha += Time.deltaTime / FADE_DURATION;
 			yield return null;
 		}
-		
+
+		//collect garbage
+		GC.Collect();
+
 		//transition
 		wait = true;
 		SceneFSM.Transition(sceneData, () => {

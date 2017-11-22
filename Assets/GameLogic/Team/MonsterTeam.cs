@@ -12,10 +12,4 @@ public class MonsterTeam
 			Monsters[i] = new Monster();
 		}
 	}
-
-	public void ResetMonsterState()
-	{
-		foreach (var monster in Monsters)
-			monster.ResetVolatileState();
-	}
 }

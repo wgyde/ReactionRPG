@@ -10,45 +10,28 @@ where T : Component
 	[SerializeField] private int InitialSize = 10;
 #pragma warning restore 649
 
+	private class TInnerPool : Pool<T>
+	{
+		PrefabPool<T> ParentPool;
+
+		public TInnerPool(PrefabPool<T> parentPool)
+		{
+			ParentPool = parentPool;
+		}
+
+		protected override T Create() => ParentPool.gameObject.InstantiateChild(ParentPool.Prefab);
+		protected override void Activate(T el) => el.gameObject.SetActive(true);
+		protected override void Deactivate(T el) => el.gameObject.SetActive(false);
+	}
+	private TInnerPool InnerPool;
 	private Queue<T> Pool;
 
 	public virtual void Initialize()
 	{
-		Pool = new Queue<T>();
-		Create(InitialSize);
+		InnerPool = new TInnerPool(this);
+		InnerPool.Create(InitialSize);
 	}
 
-	private void Activate(T instance)
-	{
-		instance.gameObject.SetActive(true);
-	}
-
-	private void Deactivate(T instance)
-	{
-		instance.gameObject.SetActive(false);
-	}
-
-	public T Take()
-	{
-		if (Pool.Count == 0)
-		{
-			Debug.LogWarning($"Pool \"{this}\" is out of instances. Creating {10} more.");
-			Create(10);
-		}
-		var instance = Pool.Dequeue();
-		Activate(instance);
-		return instance;
-	}
-
-	public void Give(T instance)
-	{
-		Deactivate(instance);
-		Pool.Enqueue(instance);
-	}
-
-	private void Create(int count)
-	{
-		for (int i=0; i<count; ++i)
-			Give(gameObject.InstantiateChild(Prefab));
-	}
+	public T Take() => InnerPool.Take();
+	public void Give(T el) => InnerPool.Give(el);
 }

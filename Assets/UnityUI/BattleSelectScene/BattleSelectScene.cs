@@ -41,7 +41,6 @@ public class BattleSelectScene : MonoBehaviour
 		el.Name = "Test Battle";
 		el.CreateEnemyTeam = () => {
 			var team = new MonsterTeam();
-			team.Monsters[0].HPCur = 1;
 			return team;
 		};
 		BattleListElements.Add(el);

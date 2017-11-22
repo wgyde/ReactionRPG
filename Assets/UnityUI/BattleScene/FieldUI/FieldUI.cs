@@ -12,7 +12,7 @@ public class FieldUI : MonoBehaviour
 	private Rect Frame;
 
 	#region GetUI
-	public FieldUI_Monster GetUI(BattleSlot_Monster monsterSlot) => BattleTeamUIs[monsterSlot.ParentTeam.Index].MonsterUIs[monsterSlot.Index];
+	public FieldUI_Monster GetUI(BattlingMonster monsterSlot) => BattleTeamUIs[monsterSlot.ParentBattlingTeam.Index].MonsterUIs[monsterSlot.Index];
 	#endregion
 
 	public void Initialize(BattleScene parentBattleScene)
